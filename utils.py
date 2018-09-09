@@ -75,7 +75,7 @@ def get_latest_in_path(path: str):
 		if len(files) > 0:
 			return max(files)
 
-def get_regex_group(pattern: str, string: str, flags: re.RegexFlag = 0):
+def get_regex_group(pattern: str, string: str, flags = 0):
 	""" Returns first matching group given regex pattern and string or None if no match """
 	match = re.search(pattern, string, flags)
 	if match:
@@ -212,4 +212,3 @@ def update_all_users(path: str):
 	for user in users:
 		update_summaries.append(update_all_keys(path, user))
 	return update_summaries
-	
