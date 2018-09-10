@@ -193,8 +193,8 @@ def add_summary(path: str, user: str, key: str, time: dt, val: int):
 ### SPEED
 def update_batch(path: str, user: str, key: str):
 	""" Updates summary without going through all records"""
-	latest_batch_val = get_latest_batch(path, user, key, val=True)
-	latest_batch_time = get_latest_batch_time(path, user, key)
+	latest_batch_val = get_latest_batch(path, user, key, val=True) or 0
+	latest_batch_time = get_latest_batch_time(path, user, key) or dt.min()
 	records_to_update = get_records_filtered(path, user, key, latest_batch_time, RecordFilter.AFTER_OF_EQUAL)
 	update_val = int(latest_batch_val) + records_to_update
 	return add_summary(path, user, key, dt.now(), update_val)
